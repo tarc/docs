@@ -5,7 +5,7 @@ page:
 ---
 By default the filesystem path is used to determine the note URL. You can override this using the `slug` frontmatter metadata.
 
-## Overriding the URL
+### Overriding the URL
 
 For example,
 

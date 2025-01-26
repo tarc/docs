@@ -5,7 +5,7 @@ default:
 fmt:
     nix fmt
 
-# Run local server
+# Lock emanote on dark-mode
 lock-dark:
     nix flake lock --override-input emanote "github:tarc/emanote/dark-mode-rebased"
 
@@ -20,3 +20,7 @@ build:
 # Preview the static site
 serve:
     nix run nixpkgs#nodePackages.live-server -- ./result --mount="/docs:./result"
+
+# Preview the static site
+preview:
+    nix run .#preview --accept-flake-config

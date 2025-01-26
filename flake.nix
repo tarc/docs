@@ -15,16 +15,27 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = nixpkgs.lib.systems.flakeExposed;
       imports = [ inputs.emanote.flakeModule ];
-      perSystem = { self', pkgs, system, ... }: {
+      perSystem = { config, self', pkgs, system, ... }: {
         emanote = {
           # By default, the 'emanote' flake input is used.
           # package = inputs.emanote.packages.${system}.default;
           sites."default" = {
             layers = [{ path = ./.; pathString = "."; }];
-            # port = 8080;
+            port = 8080;
             baseUrl = "/docs/"; # Change to "/" (or remove it entirely) if using CNAME
             # prettyUrls = true;
           };
+        };
+        apps.preview.program = pkgs.writeShellApplication {
+          name = "emanote-static-preview";
+          meta.description = ''
+            Run a locally running preview of the statically generated docs.
+          '';
+          runtimeInputs = [ pkgs.nodePackages.live-server ];
+          text = ''
+            set -x
+            live-server ${self'.packages.default} --mount="/docs:${self'.packages.default}" "$@"
+          '';
         };
         devShells.default = pkgs.mkShell {
           buildInputs = [
