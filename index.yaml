@@ -9,7 +9,7 @@ template:
 
   # You can add your own variables here, like editBaseUrl.
   # See after-note.tpl to see where editBaseUrl gets used.
-  editBaseUrl: https://github.com/tarc/emanote-template/edit/main
+  editBaseUrl: https://github.com/tarc/docs/edit/main
 
   # Uncomment this to get neuron-style pages
   # name: /templates/layouts/note

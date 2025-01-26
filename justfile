@@ -19,4 +19,4 @@ build:
 
 # Preview the static site
 serve:
-    nix run nixpkgs#nodePackages.live-server -- ./result --mount="/emanote-template:./result"
+    nix run nixpkgs#nodePackages.live-server -- ./result --mount="/docs:./result"
